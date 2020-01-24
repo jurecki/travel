@@ -1,6 +1,10 @@
 /* SELECTORS */
 
-export const getAllFilters = ({filters}) => filters;
+export const getAllFilters = ({filters}) => {
+  console.log(filters);
+  
+  return filters;
+};
 
 /* ACTIONS */
 
@@ -22,7 +26,7 @@ export const changeSearchPhrase = payload => ({ payload, type: CHANGE_PHRASE });
 export const addTags = payload => ({ payload, type: ADD_TAGS });
 export const removeTags = payload => ({payload, type: REMOVE_TAGS});
 
-export const changeDuration = payload => ({ payload, type: CHANGE_DURATION });
+export const changeDuration = payload => ({ payload: {...payload}, type: CHANGE_DURATION });
 
 // reducer
 export default function reducer(statePart = [], action = {}) {
