@@ -16,7 +16,7 @@ const createActionName = name => `app/${reducerName}/${name}`;
 export const CHANGE_PHRASE = createActionName('CHANGE_PHRASE');
 // TODO - add other action types
 export const ADD_TAGS = createActionName('ADD_TAGS');
-export const REMOVE_TAGS = createActionName('ADD_TAGS');
+export const REMOVE_TAGS = createActionName('REMOVE_TAGS');
 export const CHANGE_DURATION = createActionName('CHANGE_DURATION');
 
 // action creators
@@ -44,17 +44,23 @@ export default function reducer(statePart = [], action = {}) {
           [action.payload.type]: action.payload.value },
       };
 
-    case ADD_TAGS:
+    case ADD_TAGS: {
+      console.log('test add tags');
       return {
         ...statePart,
-        tags: action.payload,
+        tags: [...statePart.tags, action.payload],
       };  
+    }
+      
 
-    case REMOVE_TAGS:
+    case REMOVE_TAGS: {
+      console.log('test remove');
       return {
         ...statePart,
-        tags: action.payload,
+        tags: statePart.tags.filter(tag => tag!== action.payload),
       };  
+    }
+      
     default:
       return statePart;
   }

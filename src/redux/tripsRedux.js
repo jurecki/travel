@@ -19,7 +19,15 @@ export const getFilteredTrips = ({trips, filters}) => {
   }
   // TODO - filter by tags
   if(filters.tags!='') {
-    output = output.filter(trip => filters.tags == trip.tags);
+    output = output.filter(trip => {
+      let check = true;
+      for(let tag of filters.tags ) {
+        if(!trip.tags.includes(tag)) {
+          check=false;
+        }
+      }
+      return check;
+    });
     
   }
   
