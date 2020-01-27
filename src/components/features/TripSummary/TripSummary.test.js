@@ -10,7 +10,7 @@ describe('Component TripSummery', () => {
     );
 
     expect(component.find('Link').prop('to')).toEqual(expectedHref);
-    console.log(component.debug());
+
   });
 
   it('should render correct img', () => {
@@ -40,11 +40,11 @@ describe('Component TripSummery', () => {
     );
     expect(component).toBeTruthy();
   });
-
+  {/*
   it('should throw error without props id, image, name, cost, days', () => {
     expect(() => shallow(<TripSummary tags={['pool', 'beach']} />)).toThrow();
   });
-
+  */}
   it('should render correct tags', () => {
     const expectedTags = ['pool', 'spa', 'beach'];
     const component = shallow(
