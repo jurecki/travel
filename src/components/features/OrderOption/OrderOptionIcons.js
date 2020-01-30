@@ -10,7 +10,7 @@ const OrderOptionIcons = ({
   setOptionValue,
   defaultValue,
 }) => (
-  <div className={styles.icon}>
+  <div>
     {required ? (
       ''
     ) : (
@@ -18,7 +18,6 @@ const OrderOptionIcons = ({
         ---
       </div>
     )}
-    {/*{!value?styles.icon:styles.iconActive}*/}
     {values.map(value => {
       return (
         <div
@@ -30,8 +29,9 @@ const OrderOptionIcons = ({
             );
             for (let icon of iconActive) {
               icon.classList.remove(styles.iconActive);
+              event.currentTarget.classList.add(styles.iconActive);
             }
-            event.target.classList.add(styles.iconActive);
+            
             setOptionValue(value.id);
           }}
         >

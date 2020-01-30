@@ -2,31 +2,21 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import TripSummary from './TripSummary';
 
-describe('Component TripSummery', () => {
-  it('should render correct href', () => {
+describe ('ComponentTrip Summary',() => {
+  it ('should render correct href', () => {
     const expectedHref = '/trip/abc';
-    const component = shallow(
-      <TripSummary id='abc' tags={['pool', 'beach']} />
-    );
+    const component = shallow(<TripSummary id='abc'/>);
 
     expect(component.find('Link').prop('to')).toEqual(expectedHref);
-
   });
 
-  it('should render correct img', () => {
-    const expectedImage = 'image.jpg';
-    const expectedName = 'travel';
-    const component = shallow(
-      <TripSummary
-        id='abc'
-        tags={['pool', 'beach']}
-        image='image.jpg'
-        name='travel'
-      />
-    );
+  it ('should <img> correct src and alt', () => {
+    const expectedSrc = 'obrazek.jpg';
+    const expectedAlt = 'moj-obrazek';
+    const component = shallow(<TripSummary image='obrazek.jpg' name='moj-obrazek'/>);
 
-    expect(component.find('img').prop('src')).toEqual(expectedImage);
-    expect(component.find('img').prop('alt')).toEqual(expectedName);
+    expect(component.find('img').prop('src')).toEqual(expectedSrc);
+    expect(component.find('img').prop('alt')).toEqual(expectedAlt);
   });
 
   it('should render without crashing', () => {
@@ -40,11 +30,11 @@ describe('Component TripSummery', () => {
     );
     expect(component).toBeTruthy();
   });
-  {/*
+  /*
   it('should throw error without props id, image, name, cost, days', () => {
     expect(() => shallow(<TripSummary tags={['pool', 'beach']} />)).toThrow();
   });
-  */}
+s*/
   it('should render correct tags', () => {
     const expectedTags = ['pool', 'spa', 'beach'];
     const component = shallow(

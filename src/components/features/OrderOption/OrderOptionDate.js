@@ -1,9 +1,13 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-
+import PropTypes from 'prop-types';
 
 class OrderOptionDate extends React.Component {
+  static propTypes = {
+    setOptionValue: PropTypes.func,
+  }
+  
     state = {
       startDate: new Date(),
     };
@@ -12,6 +16,7 @@ class OrderOptionDate extends React.Component {
       this.setState({
         startDate: date,
       });
+      this.props.setOptionValue(date.toString());
     };
    
     render() {
@@ -19,6 +24,7 @@ class OrderOptionDate extends React.Component {
         <DatePicker
           selected={this.state.startDate}
           onChange={this.handleChange}
+
         />
       );
     }
