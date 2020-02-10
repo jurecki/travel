@@ -13,24 +13,7 @@ const mockProps = {
   promoDescription: 'Take your time',
 };
 
-describe('Component HappyHourAd', () => {
-  it('should render without crashing', () => {
-    const component = shallow(<HappyHourAd />);
-    expect(component).toBeTruthy();
-  });
 
-  it('shoud render two components', () => {
-    const component = shallow(<HappyHourAd />);
-    expect(component.exists(select.title)).toEqual(true);
-    expect(component.exists(select.descr)).toEqual(true);
-  });
-
-  it('shoud render title with props', () => {
-    const component = shallow(<HappyHourAd {...mockProps} />);
-    expect(component.find('.title').text()).toBe(mockProps.title);
-  });
-
-});
 
 /* Test 4 */
 
@@ -98,47 +81,3 @@ describe('Component HappyHourAd with mocked Date and delay', () => {
   checkDescriptionAfterTime('13:00:00', 60*60, 22 * 60 * 60 + '');
 });
 
-/* Test 6 */
-
-const checkDescriptionAtBoundaryValues= (time, expectedDescription) => {
-  it (`should show correct at ${time}`,() => {
-    global.Date = mockDate(`2019-05-14T${time}.135Z`);
-
-    const component = shallow (<HappyHourAd {...mockProps} />);
-    const renderedTime = component.find(select.descr).text();
-    expect (renderedTime).toEqual(expectedDescription);
-
-    global.Date = trueDate;
-  });
-};
-
-describe('Component HappyHourAd with mocked Date', () => {
-  checkDescriptionAtBoundaryValues('12:59:59', mockProps.promoDescription);
-  checkDescriptionAtBoundaryValues('12:00:00', mockProps.promoDescription);
-});
-
-/* Test 6 */
-const checkDescriptionAfterNoon = (time, delaySeconds, expectedDescription) => {
-  it (`should show correct value ${delaySeconds} seconds after ${time}`,() => {
-    jest.useFakeTimers();
-    global.Date = mockDate(`2019-05-14T${time}.135Z`);
-
-    const component = shallow (<HappyHourAd {...mockProps} />);
-
-    const newTime = new Date();
-    newTime.setSeconds(newTime.getSeconds()+ delaySeconds);
-    global.Date = mockDate(newTime.getTime());
-
-    jest.advanceTimersByTime(delaySeconds * 1000);
-
-    const renderedTime = component.find(select.descr).text();
-    expect (renderedTime).toEqual(expectedDescription);
-
-    global.Date = trueDate;
-    jest.useRealTimers();
-  });
-};
-
-describe('Component HappyHourAd with mocked Date and delay', () => {
-  checkDescriptionAfterNoon('11:59:58', 2, mockProps.promoDescription);
-});
