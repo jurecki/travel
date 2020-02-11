@@ -1,0 +1,20 @@
+.component {
+    position: relative;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .title, .numberOfDays {
+    position: absolute;
+    width: 100%;
+  }
+  
+  .title {
+    top: -300px;
+    font-size: 30px;
+  }
+  
+  .numberOfDays {
+    top: -350px;
+    font-size: 40px;
+  }
